@@ -51,8 +51,7 @@ jobs:
           fi
 
           git commit -m "🚀 Deliver built arifacts at $GITHUB_SHA"
-          git push origin build-results
-          git tag -d latest || true
-          git tag latest
+          git tag -f latest
           git log --oneline --graph
-          git push origin latest
+          git push origin build-results
+          git push -f origin latest  # I am serious, this is to *move* the tag
