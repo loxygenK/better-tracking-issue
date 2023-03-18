@@ -14,4 +14,10 @@ async function main(): Promise<void> {
   });
 }
 
-main();
+(async () => {
+  try {
+    await main();
+  } catch (e) {
+    console.error(e);
+  }
+})();
