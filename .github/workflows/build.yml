@@ -43,7 +43,7 @@ jobs:
           git add -A
 
           if [[ ! $(git status -s) ]]; then
-            echo "There is no changed file."
+            echo "✅ There is no changed file."
             exit 0
           fi
 
