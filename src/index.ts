@@ -1,3 +1,9 @@
-import { greet } from "./main";
+import * as core from "@actions/core";
+import { greet } from "~/main";
 
-console.log(greet());
+async function main(): Promise<void> {
+  core.notice("Hey, the action is working!");
+  core.notice(`Let me do some greeting: ${greet()}`);
+}
+
+main();
