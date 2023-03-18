@@ -35,7 +35,7 @@ export async function getLatestIssue(
   }
 
   return issues.data.map((issuePayload) => ({
-    id: issuePayload.id,
+    id: issuePayload.number,
     title: issuePayload.title,
     body: issuePayload.body ?? "",
   }));

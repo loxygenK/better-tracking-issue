@@ -4,7 +4,7 @@ import { Issue as PayloadIssue } from "@octokit/webhooks-definitions/schema";
 
 export function convertIssue(issue: PayloadIssue): Issue {
   return {
-    id: issue.id,
+    id: issue.number,
     title: issue.title,
     body: issue.body ?? "",
   };
