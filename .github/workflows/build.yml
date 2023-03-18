@@ -5,8 +5,13 @@ on:
     branches:
       - main
 
+  pull_request:
+
 permissions:
   contents: write
+
+env:
+  BASE_COMMIT: 4238dc6b63a734703bdbd39c044d1adbdeab9497
 
 jobs:
   build-and-release:
@@ -25,6 +30,39 @@ jobs:
           cache: pnpm
           node-version: ${{ env.NODE_VERSION }}
 
+      - name: Determine destination branch
+        id: dest
+        shell: bash
+        run: |
+          if [ -z "$GITHUB_HEAD_REF" ]; then
+            BRANCH_NAME="build-results"
+            TAG_NAME="latest"
+          else
+            hyphened=$(echo "$GITHUB_HEAD_REF" | sed "s/\//-/g")
+            BRANCH_NAME="build-results-in-pr/$GITHUB_HEAD_REF"
+            TAG_NAME="latest-at-$hyphened"
+          fi
+
+          echo "Using branch '$BRANCH_NAME', tag '$TAG_NAME'"
+
+          echo "branch=$BRANCH_NAME" >> "$GITHUB_OUTPUT"
+          echo "tag=$TAG_NAME" >> "$GITHUB_OUTPUT"
+
+      - name: Create release branch if neccesary
+        run: |
+          git fetch
+          if git show-ref --quiet refs/remotes/origin/${{ steps.dest.outputs.branch }}; then
+            echo "Branch already exists, no need to create"
+            exit 0
+          fi
+
+          HEAD=$(git rev-parse HEAD)
+          git checkout ${BASE_COMMIT}
+          git checkout -b ${{ steps.dest.outputs.branch }}
+          git push origin ${{ steps.dest.outputs.branch }}
+
+          git checkout $HEAD
+
       - name: Install dependnecies
         run: pnpm install --frozen-lockfile
 
@@ -36,8 +74,7 @@ jobs:
           HEAD=$(git rev-parse HEAD)
           DIRNAME=$(mktemp -d)
           mv dist $DIRNAME/dist
-          git fetch origin build-results
-          git checkout -b build-results origin/build-results || true
+          git checkout ${{ steps.dest.outputs.branch }}
           find ./ -mindepth 1 -not -path "./.git*" -delete
           mv $DIRNAME/dist dist
           ls -al
@@ -52,7 +89,7 @@ jobs:
           fi
 
           git commit -m "🚀 Deliver built arifacts at $GITHUB_SHA"
-          git tag -f latest
+          git tag -f ${{ steps.dest.outputs.tag }}
           git log --oneline --graph
-          git push origin build-results
-          git push -f origin latest  # I am serious, this is to *move* the tag
+          git push origin ${{ steps.dest.outputs.branch }}
+          git push -f origin ${{ steps.dest.outputs.tag }}  # I am serious, this is to *move* the tag
