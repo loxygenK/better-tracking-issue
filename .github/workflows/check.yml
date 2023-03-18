@@ -22,6 +22,10 @@ jobs:
       - name: Clone this repository
         uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7.29.3
+
       - name: Set up node
         uses: actions/setup-node@v3
         with:
@@ -29,7 +33,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Install dependnecies
-        run: pnpm i
+        run: pnpm install --frozen-lockfile
 
       - name: Run check (${{ matrix.cmd }})
         run: pnpm ${{ matrix.cmd }}
