@@ -12,7 +12,8 @@
     "ci:prettier": "pnpm lint:prettier",
     "fix": "run-s fix:*",
     "fix:eslint": "pnpm lint:eslint --fix",
-    "fix:prettier": "pnpm lint:prettier -w"
+    "fix:prettier": "pnpm lint:prettier -w",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "loxygenK <me@f4n.dev>",
@@ -29,6 +30,8 @@
     "@typescript-eslint/eslint-plugin": "^5.55.0",
     "@typescript-eslint/parser": "^5.55.0",
     "eslint": "^8.36.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.0",
     "npm-run-all": "^4.1.5"
   }
 }
