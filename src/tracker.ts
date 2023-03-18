@@ -1,12 +1,5 @@
 import { safeParseInt } from "./util";
 
-export type Issue = {
-  id: number;
-  title: string;
-  tracking: Array<number>;
-  trackedBy: number | "not-tracked" | "unknown";
-};
-
 export const DEFAULT_TRACKING_ISSUE_REGEX = /-\s+\[[\sxX]\]\s+#(?<id>\d+)/;
 
 export function parseTrackingIssue(
