@@ -13,7 +13,7 @@ jobs:
   check:
     strategy:
       matrix:
-        cmd: ["lint:eslint --max-warnings 0", "lint:prettier"]
+        cmd: ["ci:eslint", "ci:prettier"]
       fail-fast: false
 
     runs-on: ubuntu-latest

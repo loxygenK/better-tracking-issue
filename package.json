@@ -8,6 +8,8 @@
     "lint": "run-s lint:*",
     "lint:eslint": "eslint 'src/**/*.ts'",
     "lint:prettier": "prettier -c 'src/**/*.ts'",
+    "ci:eslint": "pnpm lint:eslint --max-warnings 0",
+    "ci:prettier": "pnpm lint:prettier",
     "fix": "run-s fix:*",
     "fix:eslint": "pnpm lint:eslint --fix",
     "fix:prettier": "pnpm lint:prettier -w"
