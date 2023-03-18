@@ -33,6 +33,7 @@ jobs:
 
       - name: Push and release latest
         run: |
+          HEAD=$(git rev-parse HEAD)
           DIRNAME=$(mktemp -d)
           mv dist $DIRNAME/dist
           git fetch origin build-results
@@ -40,7 +41,7 @@ jobs:
           find ./ -mindepth 1 -not -path "./.git*" -delete
           mv $DIRNAME/dist dist
           ls -al
-          git checkout main action.yml LICENSE
+          git checkout $HEAD action.yml LICENSE
           git config user.name ghost
           git config user.email ghost@ghosttown.example.com
           git add -A
