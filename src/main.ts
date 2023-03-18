@@ -1,3 +1,3 @@
 export function greet(): string {
-  return 10;
+  return "Hello world from GitHub Action!";
 }
