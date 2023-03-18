@@ -27,7 +27,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Install dependnecies
-        uses: pnpm i
+        run: pnpm i
 
       - name: Run check (${{ matrix.cmd }})
-        uses: pnpm ${{ matrix.cmd }}
+        run: pnpm ${{ matrix.cmd }}
