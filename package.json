@@ -1,0 +1,13 @@
+{
+  "name": "better-tracking-issue",
+  "version": "0.1.0",
+  "private": true,
+  "description": "🏁 A github action for making tracking issue more easy to manage and see",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "loxygenK <me@f4n.dev>",
+  "license": "MIT",
+  "packageManager": "pnpm@7.29.3"
+}
