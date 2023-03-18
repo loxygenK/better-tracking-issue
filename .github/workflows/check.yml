@@ -16,6 +16,8 @@ jobs:
         cmd: ["lint:eslint", "lint:prettier"]
       fail-fast: false
 
+    runs-on: ubuntu-latest
+
     steps:
       - name: Clone this repository
         uses: actions/checkout@v3
