@@ -9,12 +9,12 @@ on:
     branches:
       - main
 
-  jobs:
-    check:
-      strategy:
-        matrix:
-          cmd: ["lint:eslint", "lint:prettier"]
-        fail-fast: false
+jobs:
+  check:
+    strategy:
+      matrix:
+        cmd: ["lint:eslint", "lint:prettier"]
+      fail-fast: false
 
     steps:
       - name: Clone this repository
