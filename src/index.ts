@@ -1,4 +1,4 @@
-import github from "@actions/github";
+import * as github from "@actions/github";
 import { getSubjectIssue } from "./github/issue";
 
 async function main(): Promise<void> {
