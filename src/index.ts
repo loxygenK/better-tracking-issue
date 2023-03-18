@@ -1,9 +1,14 @@
-import * as core from "@actions/core";
-import { greet } from "~/main";
+import github from "@actions/github";
+import { getSubjectIssue } from "./github/issue";
 
 async function main(): Promise<void> {
-  core.notice("Hey, the action is correctly built and working!");
-  core.notice(`Let me do some greeting: ${greet()}`);
+  const octokit = github.getOctokit(process.env["GITHUB_TOKEN"] ?? "");
+
+  const subjectIssue = await getSubjectIssue(github.context, octokit);
+
+  subjectIssue.forEach((issue) => {
+    console.dir(issue);
+  });
 }
 
 main();
