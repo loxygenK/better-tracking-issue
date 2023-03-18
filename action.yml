@@ -5,3 +5,8 @@ author: "loxygenK <me@f4n.dev>"
 runs:
   using: "node16"
   main: "dist/index.js"
+
+inputs:
+  token:
+    description: GitHub token to access issues.
+    required: true
