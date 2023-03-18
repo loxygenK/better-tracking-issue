@@ -1,1 +1,1 @@
-const mustBeError: never = "Juicy";
+/* nothing yet */
