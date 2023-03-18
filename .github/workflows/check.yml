@@ -1,0 +1,33 @@
+name: Lint and formatting
+
+env:
+  NODE_VERSION: 16
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+  jobs:
+    check:
+      strategy:
+        matrix:
+          cmd: ["lint:eslint", "lint:prettier"]
+        fail-fast: false
+
+    steps:
+      - name: Clone this repository
+        uses: actions/checkout@v3
+
+      - name: Set up node
+        uses: actions/setup-node@v3
+        with:
+          cache: pnpm
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependnecies
+        uses: pnpm i
+
+      - name: Run check (${{ matrix.cmd }})
+        uses: pnpm ${{ matrix.cmd }}
