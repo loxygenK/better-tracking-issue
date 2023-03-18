@@ -38,7 +38,7 @@ jobs:
           git fetch origin main
           git fetch origin build-results
           git branch --track main origin/main
-          git checkout -b build-results
+          git checkout -b build-results origin/build-results
           find ./ -mindepth 1 -not -path "./.git*" -not -path "./dist*" -delete
           ls -al
           git checkout main action.yml LICENSE
