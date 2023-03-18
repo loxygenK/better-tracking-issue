@@ -5,6 +5,11 @@ on:
     branches:
       - main
 
+  pull_request: # Todo: Remove
+
+permissions:
+  contents: write
+
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
