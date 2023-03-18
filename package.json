@@ -9,5 +9,10 @@
   "keywords": [],
   "author": "loxygenK <me@f4n.dev>",
   "license": "MIT",
+  "dependencies": {
+    "@types/node": "^18.15.3",
+    "ncc": "^0.3.6",
+    "typescript": "^5.0.2"
+  },
   "packageManager": "pnpm@7.29.3"
 }
