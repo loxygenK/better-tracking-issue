@@ -1,8 +1,12 @@
 import { Issue } from "~/entity";
 
-import { Issue as PayloadIssue } from "@octokit/webhooks-definitions/schema";
+export type IssueLike = {
+  number: number;
+  title: string;
+  body?: string | null | undefined;
+};
 
-export function convertIssue(issue: PayloadIssue): Issue {
+export function convertIssue(issue: IssueLike): Issue {
   return {
     id: issue.number,
     title: issue.title,
