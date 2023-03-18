@@ -1,0 +1,7 @@
+name: "Better Tracking Issue"
+description: "🏁 A github action for making tracking issue more easy to manage and see"
+author: "loxygenK <me@f4n.dev>"
+
+runs:
+  using: "node16"
+  main: "dist/index.js"
