@@ -1,1 +1,3 @@
-/* nothing yet */
+import { greet } from "./main";
+
+console.log(greet());
