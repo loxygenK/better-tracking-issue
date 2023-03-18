@@ -4,6 +4,7 @@
   "private": true,
   "description": "🏁 A github action for making tracking issue more easy to manage and see",
   "scripts": {
+    "build": "esbuild src/index.ts --bundle --outfile=dist/index.js --platform=node --target=node16 --minify",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "run-s lint:*",
     "lint:eslint": "eslint 'src/**/*.ts'",
@@ -20,8 +21,8 @@
   "license": "MIT",
   "dependencies": {
     "@types/node": "^18.15.3",
+    "@vercel/ncc": "^0.36.1",
     "eslint-config-prettier": "^8.7.0",
-    "ncc": "^0.3.6",
     "prettier": "^2.8.4",
     "typescript": "^5.0.2"
   },
@@ -29,6 +30,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.55.0",
     "@typescript-eslint/parser": "^5.55.0",
+    "esbuild": "^0.17.12",
     "eslint": "^8.36.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.0",
