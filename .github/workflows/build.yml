@@ -1,9 +1,12 @@
-name: Build and push
+name: Build and release
 
 on:
   push:
     branches:
       - main
+
+permissions:
+  contents: write
 
 jobs:
   build-and-release:
@@ -31,7 +34,7 @@ jobs:
       - name: Push and release latest
         run: |
           git fetch origin build-results
-          git checkout -b build-results
+          git checkout -b build-results origin/build-results
           find ./ -mindepth 1 -not -path "./.git*" -not -path "./dist*" -delete
           ls -al
           git checkout main action.yml LICENSE
