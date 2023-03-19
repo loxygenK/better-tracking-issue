@@ -10,3 +10,6 @@ inputs:
   token:
     description: GitHub token to access issues.
     required: true
+  tag:
+    description: A string template added to the head of issue's title. The placeholder `<< id >>` will be substituted by the tracking issue IDs.
+    required: false
