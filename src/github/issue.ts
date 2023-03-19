@@ -1,7 +1,10 @@
-import { ChangedIssue } from "~/entity";
-import { Context } from "./types";
+import { ChangedIssue, Issue } from "~/entity";
+import { Context, OctoKit } from "./types";
 import { getIssueEvent } from "./context";
 import { convertIssue } from "./binding";
+import { PartialUnless, safelyTryPromise } from "~/util";
+
+import { RequestError } from "@octokit/types";
 
 export async function getSubjectIssue(
   context: Context
@@ -27,4 +30,41 @@ export async function getSubjectIssue(
   }
 
   return undefined;
+}
+
+export async function retrieveIssue(
+  context: Context,
+  octokit: OctoKit,
+  id: number
+): Promise<Issue | undefined> {
+  const issue = await safelyTryPromise<RequestError>()(
+    octokit.rest.issues.get({
+      ...context.repo,
+      issue_number: id,
+    })
+  );
+
+  if (!issue.ok) {
+    if (issue.error.status === 404) {
+      return undefined;
+    } else {
+      throw issue.error;
+    }
+  }
+
+  return convertIssue(issue.awaited.data);
+}
+
+export async function modifyIssue(
+  context: Context,
+  octokit: OctoKit,
+  issue: PartialUnless<Issue, "id">
+) {
+  await octokit.rest.issues.update({
+    owner: context.repo.owner,
+    repo: context.repo.repo,
+    issue_number: issue.id,
+    title: issue.title,
+    body: issue.body,
+  });
 }

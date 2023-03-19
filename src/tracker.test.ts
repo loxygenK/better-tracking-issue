@@ -49,4 +49,6 @@ describe("Tracking finding", () => {
       removed: [3, 4],
     });
   });
+
+  expect(() => 1).toThrow();
 });

@@ -12,3 +12,20 @@ export function safeParseInt(raw: string): number | undefined {
 
   return maybeNumeric;
 }
+
+export type TryResult<T, E> =
+  | { ok: true; awaited: T }
+  | { ok: false; error: E };
+export function safelyTryPromise<E>() {
+  return async <T>(promise: Promise<T>): Promise<TryResult<T, E>> => {
+    try {
+      const data = await promise;
+      return { ok: true, awaited: data };
+    } catch (e) {
+      return { ok: false, error: e as E };
+    }
+  };
+}
+
+export type PartialUnless<T, K extends keyof T> = Pick<T, K> &
+  Partial<Pick<T, Exclude<keyof T, K>>>;
