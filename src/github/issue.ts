@@ -18,7 +18,10 @@ export async function getSubjectIssue(
   if (issuePayload.action === "opened") {
     return {
       issue,
-      addedLines: issuePayload.issue.body.split("\n"),
+      diff: {
+        added: issuePayload.issue.body.split("\n"),
+        removed: [],
+      },
     };
   }
 
@@ -35,7 +38,17 @@ export async function getSubjectIssue(
       .filter((diff) => diff.added)
       .map((diff) => diff.value);
 
-    return { issue, addedLines };
+    const removedLines = diffs
+      .filter((diff) => diff.removed)
+      .map((diff) => diff.value);
+
+    return {
+      issue,
+      diff: {
+        added: addedLines,
+        removed: removedLines,
+      },
+    };
   }
 
   return undefined;
