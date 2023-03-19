@@ -1,5 +1,5 @@
-import { DiffList, dedupDiff, getDiff } from "./diff";
-import { safeParseInt } from "./util";
+import { DiffList, dedupDiff, getDiff } from "~/diff";
+import { safeParseInt } from "~/util/safeParseInt";
 
 export const DEFAULT_TRACKING_ISSUE_REGEX = /-\s+\[[\sxX]\]\s+#(?<id>\d+)/;
 
