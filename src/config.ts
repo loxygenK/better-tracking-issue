@@ -4,5 +4,5 @@ export type Config = {
 };
 
 export const defaultConfig = {
-  tag: "[🚩 #<< id >>]: ",
+  tag: "[🚩 << id >>]: ",
 } satisfies Partial<Config>;

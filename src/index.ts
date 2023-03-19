@@ -7,10 +7,10 @@ import {
   getTrackingIssueDiff,
 } from "./issue/tracker";
 import { convertInputToConfig } from "./github/input";
-import { addTrackTag, removeTrackTag } from "./issue/modify";
-import { DiffList } from "./diff";
-import { Issue } from "./entity";
+import { asyncMapDiff, mapDiff } from "./diff";
 import { filterOutUndef } from "./util/filterOutUndef";
+import { setTag } from "./issue/tag";
+import { parseAnnotationText, setAnnotationText } from "./issue/annotation";
 
 async function main(): Promise<void> {
   const config = convertInputToConfig();
@@ -33,38 +33,38 @@ async function main(): Promise<void> {
     `No longer tacked issue(s) are: ${trackedIssueDiff.removed.join(", ")}`
   );
 
-  const resolvedTrackedIssue: DiffList<Issue> = {
-    added: filterOutUndef(
-      await Promise.all(
-        trackedIssueDiff.added.map(
-          async (id) => await retrieveIssue(github.context, octokit, id)
-        )
-      )
+  const resolvedIssue = mapDiff(
+    await asyncMapDiff(trackedIssueDiff, (ids) =>
+      ids.map((id) => retrieveIssue(github.context, octokit, id))
     ),
-    removed: filterOutUndef(
-      await Promise.all(
-        trackedIssueDiff.removed.map(
-          async (id) => await retrieveIssue(github.context, octokit, id)
-        )
-      )
-    ),
-  };
-
-  const modifiedNewlyTrackedIssue = resolvedTrackedIssue.added.map((issue) =>
-    addTrackTag(config, issue, subjectIssue.issue.id)
-  );
-  const modifiedNoLongerTrackedIssue = resolvedTrackedIssue.removed.map(
-    (issue) => removeTrackTag(config, issue, subjectIssue.issue.id)
+    filterOutUndef
   );
 
-  console.log(modifiedNewlyTrackedIssue);
-  console.log(modifiedNoLongerTrackedIssue);
+  const modifiedIssues = mapDiff(resolvedIssue, (issues, diffType) => {
+    return issues.map((issue) => {
+      const newIssue = { ...issue };
+      let trackingIssues = parseAnnotationText(issue.body) ?? [];
 
-  await Promise.all(
-    [...modifiedNewlyTrackedIssue, ...modifiedNoLongerTrackedIssue].map(
-      async (issue) => modifyIssue(github.context, octokit, issue)
-    )
-  );
+      if (diffType === "added") {
+        trackingIssues.push(subjectIssue.issue.id);
+      } else {
+        trackingIssues = trackingIssues.filter(
+          (id) => id !== subjectIssue.issue.id
+        );
+      }
+
+      newIssue.title = setTag(issue.title, config.tag, trackingIssues);
+      newIssue.body = setAnnotationText(issue.body, trackingIssues);
+
+      return newIssue;
+    });
+  });
+
+  await asyncMapDiff(modifiedIssues, (issues) => {
+    return issues.map(
+      async (issue) => await modifyIssue(github.context, octokit, issue)
+    );
+  });
 }
 
 (async () => {
