@@ -1,9 +1,10 @@
 import * as github from "@actions/github";
-import { getSubjectIssue, retrieveIssue } from "./github/issue";
+import { getSubjectIssue, modifyIssue, retrieveIssue } from "./github/issue";
 import { logInfo } from "./log";
 import { promptTexts } from "./promptTexts";
 import { DEFAULT_TRACKING_ISSUE_REGEX, getTrackingIssueDiff } from "./tracker";
 import { convertInputToConfig } from "./github/input";
+import { addTrackTag } from "./modify";
 
 async function main(): Promise<void> {
   const config = convertInputToConfig();
@@ -25,17 +26,14 @@ async function main(): Promise<void> {
   await Promise.all(
     trackingIssueDiff.added.map(async (id) => {
       const issue = await retrieveIssue(github.context, octokit, id);
+      if (issue === undefined) {
+        return;
+      }
 
-      console.dir(issue);
-    })
-  );
+      const newIssue = addTrackTag(config, issue, subjectIssue.issue.id);
+      await modifyIssue(github.context, octokit, newIssue);
 
-  console.log("\n\n=== Removed ===");
-  await Promise.all(
-    trackingIssueDiff.removed.map(async (id) => {
-      const issue = await retrieveIssue(github.context, octokit, id);
-
-      console.dir(issue);
+      console.dir(newIssue);
     })
   );
 }
