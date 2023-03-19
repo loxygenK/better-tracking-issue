@@ -4,7 +4,10 @@ import { logInfo } from "./log";
 import { promptTexts } from "./promptTexts";
 import { DEFAULT_TRACKING_ISSUE_REGEX, getTrackingIssueDiff } from "./tracker";
 import { convertInputToConfig } from "./github/input";
-import { addTrackTag } from "./modify";
+import { addTrackTag, removeTrackTag } from "./modify";
+import { DiffList } from "./diff";
+import { Issue } from "./entity";
+import { filterOutUndef } from "./util";
 
 async function main(): Promise<void> {
   const config = convertInputToConfig();
@@ -16,25 +19,43 @@ async function main(): Promise<void> {
     return;
   }
 
-  const trackingIssueDiff = getTrackingIssueDiff(
+  const trackedIssueDiff = getTrackingIssueDiff(
     subjectIssue.before ?? "",
     subjectIssue.issue.body,
     DEFAULT_TRACKING_ISSUE_REGEX
   );
 
-  console.log("=== Added ===");
+  const resolvedTrackedIssue: DiffList<Issue> = {
+    added: filterOutUndef(
+      await Promise.all(
+        trackedIssueDiff.added.map(
+          async (id) => await retrieveIssue(github.context, octokit, id)
+        )
+      )
+    ),
+    removed: filterOutUndef(
+      await Promise.all(
+        trackedIssueDiff.removed.map(
+          async (id) => await retrieveIssue(github.context, octokit, id)
+        )
+      )
+    ),
+  };
+
+  const modifiedNewlyTrackedIssue = resolvedTrackedIssue.added.map((issue) =>
+    addTrackTag(config, issue, subjectIssue.issue.id)
+  );
+  const modifiedNoLongerTrackedIssue = resolvedTrackedIssue.removed.map(
+    (issue) => removeTrackTag(config, issue, subjectIssue.issue.id)
+  );
+
   await Promise.all(
-    trackingIssueDiff.added.map(async (id) => {
-      const issue = await retrieveIssue(github.context, octokit, id);
-      if (issue === undefined) {
-        return;
+    [...modifiedNewlyTrackedIssue, ...modifiedNoLongerTrackedIssue].map(
+      async (issue) => {
+        const newIssue = removeTrackTag(config, issue, subjectIssue.issue.id);
+        await modifyIssue(github.context, octokit, newIssue);
       }
-
-      const newIssue = addTrackTag(config, issue, subjectIssue.issue.id);
-      await modifyIssue(github.context, octokit, newIssue);
-
-      console.dir(newIssue);
-    })
+    )
   );
 }
 

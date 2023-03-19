@@ -19,3 +19,24 @@ export function addTrackTag(
     body: `${issue.body}\n${MODIFIED_MARKER}`,
   };
 }
+
+export function removeTrackTag(
+  config: Config,
+  issue: Issue,
+  trackedBy: number
+): Issue {
+  const tag = config.tag.replace(ID_TAG, trackedBy.toString());
+
+  // XXX: Kinda danger since this is not shallow copying
+  const newIssue = { ...issue };
+  if (issue.title.indexOf(tag) === 0) {
+    newIssue.title = issue.title.replace(tag, "");
+  }
+
+  if (issue.body.includes(MODIFIED_MARKER)) {
+    const markerPosition = issue.body.lastIndexOf(MODIFIED_MARKER);
+    newIssue.body = newIssue.body.slice(markerPosition).trimEnd();
+  }
+
+  return newIssue;
+}

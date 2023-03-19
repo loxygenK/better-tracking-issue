@@ -27,5 +27,9 @@ export function safelyTryPromise<E>() {
   };
 }
 
+export function filterOutUndef<T>(array: Array<T | undefined>): Array<T> {
+  return array.filter((elem) => elem !== undefined) as Array<T>;
+}
+
 export type PartialUnless<T, K extends keyof T> = Pick<T, K> &
   Partial<Pick<T, Exclude<keyof T, K>>>;
