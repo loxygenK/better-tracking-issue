@@ -8,7 +8,7 @@ export function parseTrackingIssue(
 ): Array<number> {
   const trackings: Array<number> = [];
 
-  for (const line of body.split("\n")) {
+  for (const line of body) {
     const matches = line.trim().match(trackingIssueRegex)?.groups;
     if (matches === undefined) {
       continue;

@@ -9,13 +9,13 @@ const issueBody = `
 - [#] #100
 - [ ] Oops this is not an issue
 - [X] #Sike
-`;
+`.split("\n");
 
 const otherIssueBody = `
 TRACK: No. 1
 TRACK: No. 12345678
 TRACK: No. ABCDE
-`;
+`.split("\n");
 
 describe("Tracking finding", () => {
   it("can find tracked issue from issue's body", () => {
