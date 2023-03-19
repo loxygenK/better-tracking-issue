@@ -2,7 +2,8 @@ import { ChangedIssue, Issue } from "~/entity";
 import { Context, OctoKit } from "./types";
 import { getIssueEvent } from "./context";
 import { convertIssue } from "./binding";
-import { PartialUnless, safelyTryPromise } from "~/util";
+import { safelyTryPromise } from "~/util/safelyTryPromise";
+import { PartialUnless } from "~/types";
 
 import { RequestError } from "@octokit/types";
 

@@ -1,5 +1,5 @@
-import { Config } from "./config";
-import { Issue } from "./entity";
+import { Config } from "~/config";
+import { Issue } from "~/entity";
 
 const ID_TAG = /<<\s*id\s*>>/i;
 

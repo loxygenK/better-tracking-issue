@@ -2,12 +2,15 @@ import * as github from "@actions/github";
 import { getSubjectIssue, modifyIssue, retrieveIssue } from "./github/issue";
 import { logInfo } from "./log";
 import { promptTexts } from "./promptTexts";
-import { DEFAULT_TRACKING_ISSUE_REGEX, getTrackingIssueDiff } from "./tracker";
+import {
+  DEFAULT_TRACKING_ISSUE_REGEX,
+  getTrackingIssueDiff,
+} from "./issue/tracker";
 import { convertInputToConfig } from "./github/input";
-import { addTrackTag, removeTrackTag } from "./modify";
+import { addTrackTag, removeTrackTag } from "./issue/modify";
 import { DiffList } from "./diff";
 import { Issue } from "./entity";
-import { filterOutUndef } from "./util";
+import { filterOutUndef } from "./util/filterOutUndef";
 
 async function main(): Promise<void> {
   const config = convertInputToConfig();
