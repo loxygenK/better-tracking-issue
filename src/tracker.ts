@@ -8,8 +8,10 @@ export function getTrackingIssueDiff(
   now: string,
   trackingIssueRegex: RegExp
 ): DiffList<number> {
-  const trackingBefore = parseTrackingIssue(before, trackingIssueRegex);
-  const trackingNow = parseTrackingIssue(now, trackingIssueRegex);
+  const trackingBefore = [
+    ...new Set(parseTrackingIssue(before, trackingIssueRegex)),
+  ];
+  const trackingNow = [...new Set(parseTrackingIssue(now, trackingIssueRegex))];
 
   return dedupDiff(getDiff(trackingBefore, trackingNow));
 }

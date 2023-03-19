@@ -34,19 +34,19 @@ describe("Tracking finding", () => {
 
   it("can calculate tracking issue diff", () => {
     // '1' moved a lot,
-    // '2' and '3' REMOVED,
+    // '2' and '3' removed,
     // '4' moved and multiplied,
     // '5' did not move,
-    // '6' ADDED
+    // '6' added
     const diff = getTrackingIssueDiff(
       "1\n2\n3\n4\n5",
-      "4\n4\n1\n6\n5",
+      "1\n2\n2\n5\n6",
       /(?<id>\d)/
     );
 
     expect(diff).toStrictEqual({
       added: [6],
-      removed: [2, 3],
+      removed: [3, 4],
     });
   });
 });
