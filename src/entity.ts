@@ -4,6 +4,11 @@ export type Issue = {
   body: string;
 };
 
+export type ChangedIssue = {
+  issue: Issue;
+  before: string | undefined;
+};
+
 export type AnalyzedIssue = {
   issue: Issue;
   tracking: Array<number>;
