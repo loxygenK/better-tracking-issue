@@ -40,6 +40,37 @@ export function getStringDiff(
     removed: removedLines,
   };
 }
+export async function asyncMapDiff<T, U>(
+  diffList: DiffList<T>,
+  mapper: (value: T[], type: "added" | "removed") => Promise<U>[]
+): Promise<DiffList<U>> {
+  const [added, removed] = await Promise.all([
+    await Promise.all(mapper(diffList.added, "added")),
+    await Promise.all(mapper(diffList.removed, "removed")),
+  ]);
+
+  return { added, removed };
+}
+
+export function mapDiff<T, U>(
+  diffList: DiffList<T>,
+  mapper: (value: T[], type: "added" | "removed") => U[]
+): DiffList<U> {
+  return {
+    added: mapper(diffList.added, "added"),
+    removed: mapper(diffList.removed, "removed"),
+  };
+}
+
+export async function traverseDiffListPromise<T>(
+  diffList: DiffList<Promise<T>>
+): Promise<DiffList<T>> {
+  const [added, removed] = await Promise.all([
+    await Promise.all(diffList.added),
+    await Promise.all(diffList.removed),
+  ]);
+  return { added, removed };
+}
 
 export function dedupDiff<T>(original: DiffList<T>): DiffList<T> {
   const added = new Set(original.added);
