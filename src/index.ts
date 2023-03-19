@@ -25,6 +25,11 @@ async function main(): Promise<void> {
     DEFAULT_TRACKING_ISSUE_REGEX
   );
 
+  logInfo(`Newly tracked issue(s) are: ${trackedIssueDiff.added.join(", ")}`);
+  logInfo(
+    `No longer tacked issue(s) are: ${trackedIssueDiff.removed.join(", ")}`
+  );
+
   const resolvedTrackedIssue: DiffList<Issue> = {
     added: filterOutUndef(
       await Promise.all(
@@ -48,6 +53,9 @@ async function main(): Promise<void> {
   const modifiedNoLongerTrackedIssue = resolvedTrackedIssue.removed.map(
     (issue) => removeTrackTag(config, issue, subjectIssue.issue.id)
   );
+
+  console.log(modifiedNewlyTrackedIssue);
+  console.log(modifiedNoLongerTrackedIssue);
 
   await Promise.all(
     [...modifiedNewlyTrackedIssue, ...modifiedNoLongerTrackedIssue].map(
