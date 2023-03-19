@@ -35,7 +35,7 @@ export function removeTrackTag(
 
   if (issue.body.includes(MODIFIED_MARKER)) {
     const markerPosition = issue.body.lastIndexOf(MODIFIED_MARKER);
-    newIssue.body = newIssue.body.slice(markerPosition).trimEnd();
+    newIssue.body = newIssue.body.slice(0, markerPosition).trimEnd();
   }
 
   return newIssue;
