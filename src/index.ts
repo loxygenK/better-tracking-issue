@@ -59,10 +59,7 @@ async function main(): Promise<void> {
 
   await Promise.all(
     [...modifiedNewlyTrackedIssue, ...modifiedNoLongerTrackedIssue].map(
-      async (issue) => {
-        const newIssue = removeTrackTag(config, issue, subjectIssue.issue.id);
-        await modifyIssue(github.context, octokit, newIssue);
-      }
+      async (issue) => modifyIssue(github.context, octokit, issue)
     )
   );
 }
