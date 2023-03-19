@@ -49,7 +49,7 @@ async function main(): Promise<void> {
         trackingIssues.push(subjectIssue.issue.id);
       } else {
         trackingIssues = trackingIssues.filter(
-          (id) => id === subjectIssue.issue.id
+          (id) => id !== subjectIssue.issue.id
         );
       }
 
