@@ -1,7 +1,7 @@
 import { parseAnnotationText, setAnnotationText } from "./annotation";
 
-describe("Tag modifier", () => {
-  it("can add a new tag to the title", () => {
+describe("Annotation text modifier", () => {
+  it("can add a new annotation text to the title", () => {
     const added = setAnnotationText("Original", [1, 2, 3]);
 
     expect(added).toBe(
@@ -9,21 +9,23 @@ describe("Tag modifier", () => {
     );
   });
 
-  it("can replace a tag in the title", () => {
+  it("can replace an annotation text in the title", () => {
     const previous = setAnnotationText("Original", [1, 2, 3]);
-    const added = setAnnotationText(previous, [4, 5]);
+    const replaced = setAnnotationText(previous, [4, 5]);
 
-    expect(added).toBe("Original\n<sub>This issue is tracked by #4 / #5</sub>");
+    expect(replaced).toBe(
+      "Original\n<sub>This issue is tracked by #4 / #5</sub>"
+    );
   });
 
-  it("can remove a tag in the title", () => {
+  it("can remove an annotation text in the title", () => {
     const previous = setAnnotationText("Original", [1, 2, 3]);
-    const added = setAnnotationText(previous, []);
+    const removed = setAnnotationText(previous, []);
 
-    expect(added).toBe("Original");
+    expect(removed).toBe("Original");
   });
 
-  it("can parse the mentioned issue from the tag", () => {
+  it("can parse the mentioned issue from an annotation text", () => {
     const issueList = [1, 2, 3];
     const subject = setAnnotationText("Original", issueList);
     const parsed = parseAnnotationText(subject);
@@ -31,7 +33,7 @@ describe("Tag modifier", () => {
     expect(parsed).toStrictEqual(issueList);
   });
 
-  it("should return undefined if no tag is found when parsing", () => {
+  it("should return undefined if no annotation text is found when parsing", () => {
     const parsed = parseAnnotationText("Blah blah");
 
     expect(parsed).toBeUndefined();

@@ -11,19 +11,19 @@ describe("Tag modifier", () => {
 
   it("can replace a tag in the title", () => {
     const previous = setTag("Original", tagTemplate, [1, 2, 3]);
-    const added = setTag(previous, tagTemplate, [4, 5]);
+    const replaced = setTag(previous, tagTemplate, [4, 5]);
 
-    expect(added).toBe("[TAG(#4, #5)]Original");
+    expect(replaced).toBe("[TAG(#4, #5)]Original");
   });
 
   it("can remove a tag in the title", () => {
     const previous = setTag("Original", tagTemplate, [1, 2, 3]);
-    const added = setTag(previous, tagTemplate, []);
+    const removed = setTag(previous, tagTemplate, []);
 
-    expect(added).toBe("Original");
+    expect(removed).toBe("Original");
   });
 
-  it("can parse the mentioned issue from the tag", () => {
+  it("can parse the mentioned issue from a tag", () => {
     const issueList = [1, 2, 3];
     const subject = setTag("Original", tagTemplate, issueList);
     const parsed = parseTag(subject, tagTemplate);
