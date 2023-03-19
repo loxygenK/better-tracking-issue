@@ -1,4 +1,4 @@
-import { setTag } from "./tag";
+import { parseTag, setTag } from "./tag";
 
 describe("Tag modifier", () => {
   const tagTemplate = "[TAG(<< id >>)]";
@@ -21,5 +21,19 @@ describe("Tag modifier", () => {
     const added = setTag(previous, tagTemplate, []);
 
     expect(added).toBe("Original");
+  });
+
+  it("can parse the mentioned issue from the tag", () => {
+    const issueList = [1, 2, 3];
+    const subject = setTag("Original", tagTemplate, issueList);
+    const parsed = parseTag(subject, tagTemplate);
+
+    expect(parsed).toStrictEqual(issueList);
+  });
+
+  it("should return undefined if no tag is found when parsing", () => {
+    const parsed = parseTag("Blah blah", tagTemplate);
+
+    expect(parsed).toBeUndefined();
   });
 });

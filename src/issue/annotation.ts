@@ -25,15 +25,13 @@ export function setAnnotationText(
   return newBody;
 }
 
-export function parseCurrentAnnotation(
-  body: string
-): Array<number> | undefined {
+export function parseAnnotationText(body: string): Array<number> | undefined {
   const extracted = body.match(TAG_ID_MATCH)?.groups?.list;
   if (extracted === undefined) {
     return undefined;
   }
 
   return filterOutUndef(
-    extracted.split(",").map((ids) => safeParseInt(ids.trim().replace("#", "")))
+    extracted.split("/").map((ids) => safeParseInt(ids.trim().replace("#", "")))
   );
 }

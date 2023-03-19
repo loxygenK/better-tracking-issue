@@ -33,14 +33,14 @@ export function setTag(
   return newTag;
 }
 
-export function parseCurrentTag(
-  tagTemplate: string,
-  title: string
+export function parseTag(
+  tag: string,
+  tagTemplate: string
 ): Array<number> | undefined {
   const tagSegments = tagTemplate.split(ID_TAG).map(escapeRegex);
   const tagRegex = new RegExp(tagSegments.join(TAG_ID_MATCH.source));
 
-  const extracted = title.match(tagRegex)?.groups?.list;
+  const extracted = tag.match(tagRegex)?.groups?.list;
   if (extracted === undefined) {
     return undefined;
   }
