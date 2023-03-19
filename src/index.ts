@@ -43,7 +43,7 @@ async function main(): Promise<void> {
   const modifiedIssues = mapDiff(resolvedIssue, (issues, diffType) => {
     return issues.map((issue) => {
       const newIssue = { ...issue };
-      let trackingIssues = parseAnnotationText(issue.title) ?? [];
+      let trackingIssues = parseAnnotationText(issue.body) ?? [];
 
       if (diffType === "added") {
         trackingIssues.push(subjectIssue.issue.id);
