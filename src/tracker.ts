@@ -3,7 +3,7 @@ import { safeParseInt } from "./util";
 export const DEFAULT_TRACKING_ISSUE_REGEX = /-\s+\[[\sxX]\]\s+#(?<id>\d+)/;
 
 export function parseTrackingIssue(
-  body: string,
+  body: Array<string>,
   trackingIssueRegex: RegExp
 ): Array<number> {
   const trackings: Array<number> = [];

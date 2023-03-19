@@ -1,38 +1,42 @@
-import { Issue } from "~/entity";
+import { ChangedIssue, Issue } from "~/entity";
 import { Context, OctoKit } from "./types";
 import { getIssueEvent } from "./context";
 import { GitHubRequestError } from "~/exception";
 import { convertIssue } from "./binding";
+import Diff = require("diff");
 
 export async function getSubjectIssue(
-  context: Context,
-  octokit: OctoKit
-): Promise<Array<Issue>> {
+  context: Context
+): Promise<ChangedIssue | undefined> {
   const issuePayload = getIssueEvent(context);
   if (issuePayload === undefined) {
-    return getLatestIssue(context, octokit);
+    return undefined;
   }
 
-  return [convertIssue(issuePayload.issue)];
-}
+  const issue = convertIssue(issuePayload.issue);
 
-export async function getLatestIssue(
-  context: Context,
-  octokit: OctoKit
-): Promise<Array<Issue>> {
-  // TODO: Make this configurable
-  const issues = await octokit.rest.issues.listForRepo({
-    owner: context.repo.owner,
-    repo: context.repo.repo,
-    sort: "updated",
-    per_page: 100,
-  });
-
-  if (issues.status < 200 || issues.status >= 400) {
-    throw new GitHubRequestError(
-      "Failed to retrieve issues list (tried since the action was not invoked via issue events)"
-    );
+  if (issuePayload.action === "opened") {
+    return {
+      issue,
+      addedLines: issuePayload.issue.body.split("\n"),
+    };
   }
 
-  return issues.data.map(convertIssue);
+  if (issuePayload.action === "edited") {
+    const from = issuePayload.changes.body?.from;
+    const current = issuePayload.issue.body;
+
+    if (from === undefined) {
+      return undefined;
+    }
+
+    const diffs = Diff.diffLines(from, current);
+    const addedLines = diffs
+      .filter((diff) => diff.added)
+      .map((diff) => diff.value);
+
+    return { issue, addedLines };
+  }
+
+  return undefined;
 }
