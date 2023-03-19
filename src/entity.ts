@@ -6,10 +6,7 @@ export type Issue = {
 
 export type ChangedIssue = {
   issue: Issue;
-  diff: {
-    added: Array<string>;
-    removed: Array<string>;
-  };
+  before: string | undefined;
 };
 
 export type AnalyzedIssue = {

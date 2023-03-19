@@ -1,4 +1,8 @@
-import { DEFAULT_TRACKING_ISSUE_REGEX, parseTrackingIssue } from "./tracker";
+import {
+  DEFAULT_TRACKING_ISSUE_REGEX,
+  getTrackingIssueDiff,
+  parseTrackingIssue,
+} from "./tracker";
 
 const issueBody = `
 # Things to do
@@ -9,13 +13,13 @@ const issueBody = `
 - [#] #100
 - [ ] Oops this is not an issue
 - [X] #Sike
-`.split("\n");
+`;
 
 const otherIssueBody = `
 TRACK: No. 1
 TRACK: No. 12345678
 TRACK: No. ABCDE
-`.split("\n");
+`;
 
 describe("Tracking finding", () => {
   it("can find tracked issue from issue's body", () => {
@@ -26,5 +30,23 @@ describe("Tracking finding", () => {
   it("can be customized using a custom regex", () => {
     const tracked = parseTrackingIssue(otherIssueBody, /TRACK: No. (?<id>\d+)/);
     expect(tracked).toStrictEqual([1, 12345678]);
+  });
+
+  it("can calculate tracking issue diff", () => {
+    // '1' moved a lot,
+    // '2' and '3' REMOVED,
+    // '4' moved and multiplied,
+    // '5' did not move,
+    // '6' ADDED
+    const diff = getTrackingIssueDiff(
+      "1\n2\n3\n4\n5",
+      "4\n4\n1\n6\n5",
+      /(?<id>\d)/
+    );
+
+    expect(diff).toStrictEqual({
+      added: [6],
+      removed: [2, 3],
+    });
   });
 });
