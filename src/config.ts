@@ -1,8 +1,8 @@
 export type Config = {
   token: string;
-  prefix: string;
+  tagPrefix: string;
 };
 
 export const defaultConfig = {
-  prefix: "🚩 ",
+  tagPrefix: "🚩 ",
 } satisfies Partial<Config>;
