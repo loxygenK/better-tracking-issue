@@ -30,6 +30,9 @@ The format of tracking issue number list prepended to the title. `<< id >>` is r
 
 ## Roadmaps
 
-- [ ] Deal with the configuration change
+- [x] Deal with the configuration change
+  - I decided to restrict the configuration instead. (At first, I thought I could log the commit hash of the setting
+    (GitHub Action config file), but I thought that was too much effort… Maybe I will do this and be able to do
+    a more flexible configuration in the far future)
 - [ ] Add tracking issue's title to the tracked issues (`v0.1.0` here possibly)
 - [ ] Make annotation text in the body configurable
