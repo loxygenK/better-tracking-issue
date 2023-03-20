@@ -5,7 +5,7 @@ import { Config, defaultConfig } from "~/config";
 export function convertInputToConfig(): Config {
   return {
     token: getInput("token", true),
-    tag: getInput("tag", false) ?? defaultConfig.tag,
+    tagPrefix: getInput("prefix", false) ?? defaultConfig.tagPrefix,
   };
 }
 

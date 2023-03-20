@@ -28,8 +28,24 @@ A token to access issues.<br />
 The format of tracking issue number list prepended to the title. `<< id >>` is replaced by the issue number list. <br />
 `[🚩 << id >>]` is set in default.
 
+## Detailed description
+
+<img src="./_readme/textDescription.svg" />
+
+- **Number tag** (The red one)<br />
+  The tracker issue's number. The tag is added to the head of the issue's title. The emoji can be configured.
+
+- **Title tag** (The green one)<br />
+  The tracker issue's title. If the tracked issue is tracked by multiple issues, the most recent issue that started tracking is shown.
+
+- **Annotation text** (The purple one)<br />
+  The tracker issue's number. (The same information with the number tag) The text is appended to the body.
+
 ## Roadmaps
 
-- [ ] Deal with the configuration change
+- [x] Deal with the configuration change
+  - I decided to restrict the configuration instead. (At first, I thought I could log the commit hash of the setting
+    (GitHub Action config file), but I thought that was too much effort… Maybe I will do this and be able to do
+    a more flexible configuration in the far future)
 - [ ] Add tracking issue's title to the tracked issues (`v0.1.0` here possibly)
 - [ ] Make annotation text in the body configurable

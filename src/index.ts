@@ -53,7 +53,7 @@ async function main(): Promise<void> {
         );
       }
 
-      newIssue.title = setTag(issue.title, config.tag, trackingIssues);
+      newIssue.title = setTag(issue.title, config.tagPrefix, trackingIssues);
       newIssue.body = setAnnotationText(issue.body, trackingIssues);
 
       return newIssue;
