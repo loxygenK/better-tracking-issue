@@ -6,5 +6,5 @@
   ],
   "commitMessagePrefix": "⬆️",
   "rebaseWhen": "behind-base-branch",
-  "platformAutomerge": true
+  "automerge": true
 }
