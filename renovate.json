@@ -4,7 +4,8 @@
     "config:base",
     ":dependencyDashboardApproval"
   ],
+  "automerge": true,
   "commitMessagePrefix": "⬆️",
   "rebaseWhen": "behind-base-branch",
-  "automerge": true
+  "reviewers": ["loxygenK"]
 }
