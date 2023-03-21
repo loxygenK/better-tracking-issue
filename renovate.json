@@ -6,5 +6,6 @@
   ],
   "commitMessagePrefix": "⬆️",
   "rebaseWhen": "behind-base-branch",
-  "automerge": true
+  "automerge": true,
+  "reviewers": ["loxygenK"]
 }
