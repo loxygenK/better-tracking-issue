@@ -38,20 +38,58 @@
 
 https://user-images.githubusercontent.com/55672846/227721771-bf87b7c0-3d97-4eaf-ae08-42702570fda2.mp4
 
-## Inputs
+## Installing
+#### Example workflow
 
-#### `token` <sup>(🔶 Requried)</sup>
+```yaml
+on:
+  issues:
+    types:
+      - opened
+      - edited
+
+permissions:
+  issues: write
+
+jobs:
+  update-issue:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: loxygenK/better-tracking-issue@v0.1.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+```
+
+##### Version to use
+
+I highly recommend using one of the following to select the workflow version since this is still v0:
+
+- **Specify the tag in the full name of the tag.** ( ❌ `v0` / ⭕ `v0.1.0` )
+- **Specify the full commit hash.** ( ❌ `built-result` / ⭕ `01234567...89abcdef` )
+
+Avoid these for most cases!
+
+- ️️❌ **Using the `latest` tag directly.**<br />
+  Since there will be breaking changes in API and behavior, using the `latest` tag is very risky!
+
+- ️️❌ **Using the tags that start with `intl-dev-` **<br />
+  These tags are meant to be used only for the development of this workflow. These tags most likely contain bugs, so using these is very risky too!
+
+#### Inputs
+
+##### `token` <sup>(🔶 Requried)</sup>
 A token to access issues. **Set `permission.issues: write` to use `GITHUB_TOKEN`!**
 
-#### `number-tag-prefix`
+##### `number-tag-prefix`
 Set the prefix used in the tag prepended to the issue title to display tracking issues' number.
 `🚩` is set in default.
 
-#### `title-tag-prefix`
+##### `title-tag-prefix`
 Set the prefix used in the tag appended to the issue title to display tracking issues' title.
 `🚩` is set in default.
 
-#### `title-tag-strategy`
+##### `title-tag-strategy`
 Specify how to select the issue to be displayed in the title tag. (Currently only one issue can be displayed to the title tag.)
 
 Try using this if you felt that the behavior of title tags is unnatural when the issue is tracked by multiple issues.
