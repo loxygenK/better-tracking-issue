@@ -7,7 +7,7 @@
 
 ## 何をする Action?
 
-**このアクションは、Task list への変更を検知して、追加された/削除された Issue のタイトルや本文（Tracked Issue）に、親 Issue （Tracking Issue）の番号や名前を書き込みます。**
+**このアクションは、[Task list](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/about-task-lists) への変更を検知して、追加された/削除された Issue のタイトルや本文（Tracked Issue）に、親 Issue （Tracking Issue）の番号や名前を書き込みます。**
 
 - ️🗃️ Issue のリストで、その Issue が何に属しているのかが一目で分かるようになります。
 - ️🗃️ 本文の一番下にも小さい Issue 番号のリストが追加されます。
