@@ -6,14 +6,14 @@ describe("Tag modifier", () => {
   it("can add a new tag to the title", () => {
     const added = setNumberTag("Original", tagPrefix, [1, 2, 3]);
 
-    expect(added).toBe("[TAG #1, #2, #3]Original");
+    expect(added).toBe("[TAG #1, #2, #3]: Original");
   });
 
   it("can replace a tag in the title", () => {
     const previous = setNumberTag("Original", tagPrefix, [1, 2, 3]);
     const replaced = setNumberTag(previous, tagPrefix, [4, 5]);
 
-    expect(replaced).toBe("[TAG #4, #5]Original");
+    expect(replaced).toBe("[TAG #4, #5]: Original");
   });
 
   it("can remove a tag in the title", () => {
