@@ -27,9 +27,9 @@
 - **Annotation text** (紫色のもの)<br />
   Tracking Issue の番号です（Number tag と一緒です）。タイトルの末尾に追加されます。
 
-#### 実際の動作様子 (GIF)
+#### 実際の動作様子 (mp4)
 
-<img src="./_readme/record.mp4" />
+https://user-images.githubusercontent.com/55672846/227721771-bf87b7c0-3d97-4eaf-ae08-42702570fda2.mp4
 
 ## Inputs
 
