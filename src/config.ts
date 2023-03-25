@@ -1,8 +1,16 @@
 export type Config = {
   token: string;
-  tagPrefix: string;
+  numberTagPrefix: string;
+  titleTagPrefix: string;
+  titleTagStrategy:
+    | "fixed-lowest"
+    | "fixed-highest"
+    | "latest-lowest"
+    | "latest-highest";
 };
 
 export const defaultConfig = {
-  tagPrefix: "🚩 ",
+  numberTagPrefix: "🚩 ",
+  titleTagPrefix: "🚩 ",
+  titleTagStrategy: "latest-lowest",
 } satisfies Partial<Config>;

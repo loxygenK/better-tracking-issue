@@ -65,20 +65,20 @@ async function main(): Promise<void> {
 
         const plainTitle = ifUndefined(displayedIssue?.title, (title) =>
           setNumberTag(
-            setTitleTag(title, config.tagPrefix, undefined, false),
-            config.tagPrefix,
+            setTitleTag(title, config.titleTagPrefix, undefined, false),
+            config.numberTagPrefix,
             []
           )
         );
 
         newIssue.title = setNumberTag(
           newIssue.title,
-          config.tagPrefix,
+          config.numberTagPrefix,
           trackingIssues
         );
         newIssue.title = setTitleTag(
           newIssue.title,
-          config.tagPrefix,
+          config.titleTagPrefix,
           plainTitle,
           trackingIssues.length >= 2
         );
