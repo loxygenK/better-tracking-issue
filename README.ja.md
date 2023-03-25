@@ -38,23 +38,58 @@
 
 https://user-images.githubusercontent.com/55672846/227721771-bf87b7c0-3d97-4eaf-ae08-42702570fda2.mp4
 
-## Inputs
+## 追加する
+#### 例のワークフロー
 
-> **Note**
-> 「Number tag」「Title tag」「Annotation text」については、次の「Issue に追加される要素」を参照してください。
+```yaml
+on:
+  issues:
+    types:
+      - opened
+      - edited
 
-#### `token` <sup>(🔶 必須)</sup>
+permissions:
+  issues: write
+
+jobs:
+  update-issue:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: loxygenK/better-tracking-issue@v0.1.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+```
+
+##### バージョンの指定
+
+まだ v0 のため、いずれかのうちどれかを指定することをおすすめします:
+
+- **タグの名前を完全に指定する** ( ⚠️ `v0` / ⭕ `v0.1.0` )
+- **コミットハッシュを直接指定する** ( ❌ `built-result` / ⭕ `01234567...89abcdef` )
+
+ほとんどのケースで、以下のことは避けてください!
+
+- ️️❌ **`latest` タグを用いる**<br />
+  以降も破壊的変更がある可能性があるため、`latest` タグを直接指定すると危険です!
+
+- ️️❌ **`intn-dev-` から始まるタグを用いる**<br />
+  このタグは、ワークフローの開発を目的に使われています。おそらくバグが残っているため危険です!
+
+#### Inputs
+
+##### `token` <sup>(🔶 必須)</sup>
 Issue にアクセスするためのトークンです。**`GITHUB_TOKEN` を 使う際は、 `permission.issues: write` を設定してください!**
 
-#### `number-tag-prefix`
+##### `number-tag-prefix`
 Issue のタイトルの頭に追加される、Tracking Issue の番号が表示されるタグ（number tag）に使われる接頭語を指定します。
 デフォルトでは `🚩` が設定されています。
 
-#### `title-tag-prefix`
+##### `title-tag-prefix`
 Issue のタイトルの後ろに追加される、Tracking Issue の名前が表示されるタグ（title tag）に使われる接頭語を指定します。
 デフォルトでは `🚩` が設定されています。
 
-#### `title-tag-strategy`
+##### `title-tag-strategy`
 Title tag に表示される Issue を選択する方法を指定します。（Title tag には、現状 1 つの Issue のみ表示しかできません。）
 
 複数の Issue にトラッキングされているときの、Title tag の挙動が不自然だと感じたら使用してみてください。
