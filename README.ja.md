@@ -29,7 +29,7 @@
 
 #### 実際の動作様子 (GIF)
 
-<img src="./_readme/recorded.gif" />
+<img src="./_readme/record.mp4" />
 
 ## Inputs
 

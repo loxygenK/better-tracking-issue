@@ -31,7 +31,7 @@
 
 #### How it works (GIF)
 
-<img src="./_readme/recorded.gif" width="500px" />
+<img src="./_readme/record.mp4" />
 
 ## Inputs
 
