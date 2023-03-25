@@ -11,6 +11,8 @@ import { asyncMapDiff, mapDiff } from "./diff";
 import { filterOutUndef } from "./util/filterOutUndef";
 import { setNumberTag } from "./issue/numberTag";
 import { parseAnnotationText, setAnnotationText } from "./issue/annotation";
+import { setTitleTag } from "./issue/titleTag";
+import { ifUndefined } from "./util/ifUndefined";
 
 async function main(): Promise<void> {
   const config = convertInputToConfig();
@@ -40,29 +42,44 @@ async function main(): Promise<void> {
     filterOutUndef
   );
 
-  const modifiedIssues = mapDiff(resolvedIssue, (issues, diffType) => {
-    return issues.map((issue) => {
-      const newIssue = { ...issue };
-      let trackingIssues = parseAnnotationText(issue.body) ?? [];
+  const modifiedIssues = await asyncMapDiff(
+    resolvedIssue,
+    (issues, diffType) => {
+      return issues.map(async (issue) => {
+        const newIssue = { ...issue };
+        let trackingIssues = parseAnnotationText(issue.body) ?? [];
 
-      if (diffType === "added") {
-        trackingIssues.push(subjectIssue.issue.id);
-      } else {
-        trackingIssues = trackingIssues.filter(
-          (id) => id !== subjectIssue.issue.id
+        if (diffType === "added") {
+          trackingIssues.push(subjectIssue.issue.id);
+        } else {
+          trackingIssues = trackingIssues.filter(
+            (id) => id !== subjectIssue.issue.id
+          );
+        }
+
+        const displayedIssueID =
+          diffType === "added" ? subjectIssue.issue.id : trackingIssues[0];
+        const displayedIssue = await ifUndefined(displayedIssueID, (id) =>
+          retrieveIssue(github.context, octokit, id)
         );
-      }
 
-      newIssue.title = setNumberTag(
-        issue.title,
-        config.tagPrefix,
-        trackingIssues
-      );
-      newIssue.body = setAnnotationText(issue.body, trackingIssues);
+        newIssue.title = setNumberTag(
+          newIssue.title,
+          config.tagPrefix,
+          trackingIssues
+        );
+        newIssue.title = setTitleTag(
+          newIssue.title,
+          config.tagPrefix,
+          displayedIssue?.title,
+          trackingIssues.length >= 2
+        );
+        newIssue.body = setAnnotationText(issue.body, trackingIssues);
 
-      return newIssue;
-    });
-  });
+        return newIssue;
+      });
+    }
+  );
 
   await asyncMapDiff(modifiedIssues, (issues) => {
     return issues.map(
