@@ -56,7 +56,7 @@ Specify how to select the issue to be displayed in the title tag. (Currently onl
 
 Try using this if you felt that the behavior of title tags is unnatural when the issue is tracked by multiple issues.
 
-| Default? | Value            | When a tracking issue is added        | Tracking Issue が削除された時     |
+| Default? | Value            | When a tracking issue is added        | Wnen a tracking issue is removed  |
 | :------: | :--------------- | :------------------------------------ | :-------------------------------- |
 |          | `fixed-lowest`   | The issue with the lowest number (ID) | The issue with the lowest number  |
 |          | `fixed-highest`  | The issue with the highest number     | The issue with the highest number |
