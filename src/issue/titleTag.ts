@@ -1,4 +1,5 @@
-const TITLE_TAG_MATCH = / \(.+by.+\)$/;
+// Espace character before `（` and `）` is not required, since they're not half-width brackets.
+const TITLE_TAG_MATCH = /\s+（.+by.+）$/;
 
 export function createTitleTag(
   tagPrefix: string,
@@ -7,7 +8,7 @@ export function createTitleTag(
 ) {
   const continuingEllipsis = hasMoreThanTwo ? ", ..." : "";
 
-  return ` (${tagPrefix} by "${addingIssueTitle}"${continuingEllipsis})`;
+  return `  （${tagPrefix} by "${addingIssueTitle}"${continuingEllipsis}）`;
 }
 
 export function setTitleTag(

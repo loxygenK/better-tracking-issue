@@ -11,20 +11,20 @@ describe("Tag modifier", () => {
   it("can add a new tag to the title with one issue", () => {
     const added = setTitleTag("Original", tagPrefix, issueTitles.a, false);
 
-    expect(added).toBe("Original (TRACKED by <Issue A>)");
+    expect(added).toBe('Original  （TRACKED by "<Issue A>"）');
   });
 
   it("can add a new tag to the title with multiple issues", () => {
     const added = setTitleTag("Original", tagPrefix, issueTitles.a, true);
 
-    expect(added).toBe("Original (TRACKED by <Issue A>, ...)");
+    expect(added).toBe('Original  （TRACKED by "<Issue A>", ...）');
   });
 
   it("can replace a tag in the title", () => {
     const previous = setTitleTag("Original", tagPrefix, issueTitles.a, false);
     const replaced = setTitleTag(previous, tagPrefix, issueTitles.b, true);
 
-    expect(replaced).toBe("Original (TRACKED by <Issue B>, ...)");
+    expect(replaced).toBe('Original  （TRACKED by "<Issue B>", ...）');
   });
 
   it("can remove a tag in the title", () => {
