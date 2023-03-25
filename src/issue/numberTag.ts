@@ -1,7 +1,7 @@
 import { filterOutUndef } from "~/util/filterOutUndef";
 import { safeParseInt } from "~/util/safeParseInt";
 
-const NUMBER_TAG_ID_MATCH = /\.*? (?<list>(#?\d+(,\s*)?)+)\]/;
+const NUMBER_TAG_ID_MATCH = /\[.*? (?<list>(#?\d+(,\s*)?)+)\]/;
 
 export function createNumberTag(tagPrefix: string, trackedBy: Array<number>) {
   return `[${tagPrefix} #${trackedBy.join(", #")}]`;
