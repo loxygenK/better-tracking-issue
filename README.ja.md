@@ -78,9 +78,6 @@ jobs:
 
 #### Inputs
 
-> **Note**
-> 「Number tag」「Title tag」「Annotation text」については、次の「Issue に追加される要素」を参照してください。
-
 ##### `token` <sup>(🔶 必須)</sup>
 Issue にアクセスするためのトークンです。**`GITHUB_TOKEN` を 使う際は、 `permission.issues: write` を設定してください!**
 

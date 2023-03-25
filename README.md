@@ -112,6 +112,19 @@ Try using this if you felt that the behavior of title tags is unnatural when the
 > **Warning**
 > This action is still v0, so there might be breaking changes! Even in this case, I will do my best to be able to migrate the existing issue.
 
+## Detailed description
+
+<img src="./_readme/textDescription.svg" />
+
+- **Number tag** (The red one)<br />
+  The tracker issue's number. The tag is added to the head of the issue's title. The emoji can be configured.
+
+- **Title tag** (The green one)<br />
+  The tracker issue's title. If the tracked issue is tracked by multiple issues, the most recent issue that started tracking is shown.
+
+- **Annotation text** (The purple one)<br />
+  The tracker issue's number. (The same information with the number tag) The text is appended to the body.
+
 ## Roadmaps
 
 - [x] Deal with the configuration change
