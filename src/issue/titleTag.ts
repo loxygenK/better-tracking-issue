@@ -1,5 +1,3 @@
-import { filterOutUndef } from "~/util/filterOutUndef";
-
 const TITLE_TAG_MATCH = / \(.+by.+\)$/;
 
 export function createTitleTag(
