@@ -11,7 +11,7 @@ import { asyncMapDiff, mapDiff } from "./diff";
 import { filterOutUndef } from "./util/filterOutUndef";
 import { setNumberTag } from "./issue/numberTag";
 import { parseAnnotationText, setAnnotationText } from "./issue/annotation";
-import { setTitleTag } from "./issue/titleTag";
+import { selectDisplayingIssue, setTitleTag } from "./issue/titleTag";
 import { ifUndefined } from "./util/ifUndefined";
 
 async function main(): Promise<void> {
@@ -57,8 +57,12 @@ async function main(): Promise<void> {
           );
         }
 
-        const displayedIssueID =
-          diffType === "added" ? subjectIssue.issue.id : trackingIssues[0];
+        const displayedIssueID = selectDisplayingIssue(
+          config.titleTagStrategy,
+          diffType === "added",
+          subjectIssue.issue.id,
+          trackingIssues
+        );
         const displayedIssue = await ifUndefined(displayedIssueID, (id) =>
           retrieveIssue(github.context, octokit, id)
         );
