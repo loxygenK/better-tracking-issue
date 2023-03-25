@@ -63,6 +63,14 @@ async function main(): Promise<void> {
           retrieveIssue(github.context, octokit, id)
         );
 
+        const plainTitle = ifUndefined(displayedIssue?.title, (title) =>
+          setNumberTag(
+            setTitleTag(title, config.tagPrefix, undefined, false),
+            config.tagPrefix,
+            []
+          )
+        );
+
         newIssue.title = setNumberTag(
           newIssue.title,
           config.tagPrefix,
@@ -71,7 +79,7 @@ async function main(): Promise<void> {
         newIssue.title = setTitleTag(
           newIssue.title,
           config.tagPrefix,
-          displayedIssue?.title,
+          plainTitle,
           trackingIssues.length >= 2
         );
         newIssue.body = setAnnotationText(issue.body, trackingIssues);

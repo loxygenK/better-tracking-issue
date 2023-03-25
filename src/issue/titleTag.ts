@@ -7,7 +7,7 @@ export function createTitleTag(
 ) {
   const continuingEllipsis = hasMoreThanTwo ? ", ..." : "";
 
-  return ` (${tagPrefix} by ${addingIssueTitle}${continuingEllipsis})`;
+  return ` (${tagPrefix} by "${addingIssueTitle}"${continuingEllipsis})`;
 }
 
 export function setTitleTag(
