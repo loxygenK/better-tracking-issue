@@ -1,4 +1,6 @@
 
+<img src="./_readme/hero.svg" />
+
 # loxygenK/better-tracking-issue
 
 🚩 Make the relation of task list more visible
