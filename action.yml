@@ -10,6 +10,18 @@ inputs:
   token:
     description: GitHub token to access issues.
     required: true
-  tag:
-    description: A string template added to the head of issue's title. The placeholder `<< id >>` will be substituted by the tracking issue IDs.
+  number-tag-prefix:
+    description: A prefix for number tags, the string with the number of tracking issue prendeded to the issue title
+    required: false
+  title-tag-prefix:
+    description: A prefix for title tags, the string with the title of tracking issue appended to the issue title
+    required: false
+  title-tag-strategy:
+    description: |
+      What issue should be displayed.
+      Candidates are:
+        'fixed-lowest': The issue with the lowest number.
+        'fixed-highest': The issue with the highest number.
+        'latest-lowest': (Default) The issue most recently started tracking. If the tracking issue is removed, the issue with the lowest number is used. 
+        'latest-highest': The issue most recently started tracking. If the tracking issue is removed, the issue with the highest number is used. 
     required: false
