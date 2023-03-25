@@ -1,9 +1,14 @@
 
 <img src="./_readme/hero.svg" />
 
+<div align="center">
+
 # loxygenK/better-tracking-issue
 
-🚩 Make the relation of task list more visible
+🚩 Make the relation of task list more visible<br />
+🌐 README is available in [English] [[日本語]](./README.ja.md)
+
+</div>
 
 ## WIP
 **This action is still WIP, so there might be nasty bugs.**

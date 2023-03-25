@@ -1,9 +1,13 @@
-
 <img src="./_readme/hero.svg" />
+
+<div align="center">
 
 # loxygenK/better-tracking-issue
 
-🚩 タスクリストの関係を見やすくする
+🚩 タスクリストの関係を見やすくする<br />
+🌐 README は以下の言語でもご確認いただけます: [[English]](./README.md) [日本語]
+
+</div>
 
 ## WIP
 **まだ WIP なので、バグが潜んでいるかもしれません!!**
