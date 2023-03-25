@@ -1,13 +1,16 @@
+
+<img src="./_readme/hero.svg" />
+
 # loxygenK/better-tracking-issue
 
-🚩 Task list の関係を見やすくする
+🚩 タスクリストの関係を見やすくする
 
 ## WIP
 **まだ WIP なので、バグが潜んでいるかもしれません!!**
 
 ## 何をする Action?
 
-**このアクションは、[Task list](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/about-task-lists) への変更を検知して、追加された/削除された Issue のタイトルや本文（Tracked Issue）に、親 Issue （Tracking Issue）の番号や名前を書き込みます。**
+**このアクションは、[タスクリスト](https://docs.github.com/ja/get-started/writing-on-github/working-with-advanced-formatting/about-task-lists) への変更を検知して、追加された/削除された Issue のタイトルや本文（Tracked Issue）に、親 Issue （Tracking Issue）の番号や名前を書き込みます。**
 
 - ️🗃️ Issue のリストで、その Issue が何に属しているのかが一目で分かるようになります。
 - ️🗃️ 本文の一番下にも小さい Issue 番号のリストが追加されます。
@@ -22,7 +25,7 @@
 
 - **Title tag** (緑色のもの)<br />
   Tracking Issue のタイトルです。1 つのみ表示されます。<br />
-  どの Issue を表示するかは調整できますが、デフォルトでは、**一番最近 Task list に Tracked Issue（子タスク）を追加した Issue** を表示しています。
+  どの Issue を表示するかは調整できますが、デフォルトでは、**一番最近タスクリストに Tracked Issue（子タスク）を追加した Issue** を表示しています。
 
 - **Annotation text** (紫色のもの)<br />
   Tracking Issue の番号です（Number tag と一緒です）。タイトルの末尾に追加されます。
@@ -79,7 +82,7 @@ Title tag に表示される Issue を選択する方法を指定します。（
 
 - **Title tag** (緑色のもの)<br />
   Tracking Issue のタイトルです。1 つのみ表示されます。<br />
-  どの Issue を表示するかは調整できますが、デフォルトでは、**一番最近 Task list に Tracked Issue（子タスク）を追加した Issue** を表示しています。
+  どの Issue を表示するかは調整できますが、デフォルトでは、**一番最近タスクリストに Tracked Issue（子タスク）を追加した Issue** を表示しています。
 
 - **Annotation text** (紫色のもの)<br />
   Tracking Issue の番号です（Number tag と一緒です）。タイトルの末尾に追加されます。
