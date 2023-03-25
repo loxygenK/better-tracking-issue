@@ -9,7 +9,7 @@ import {
 import { convertInputToConfig } from "./github/input";
 import { asyncMapDiff, mapDiff } from "./diff";
 import { filterOutUndef } from "./util/filterOutUndef";
-import { setTag } from "./issue/tag";
+import { setNumberTag } from "./issue/numberTag";
 import { parseAnnotationText, setAnnotationText } from "./issue/annotation";
 
 async function main(): Promise<void> {
@@ -53,7 +53,11 @@ async function main(): Promise<void> {
         );
       }
 
-      newIssue.title = setTag(issue.title, config.tagPrefix, trackingIssues);
+      newIssue.title = setNumberTag(
+        issue.title,
+        config.tagPrefix,
+        trackingIssues
+      );
       newIssue.body = setAnnotationText(issue.body, trackingIssues);
 
       return newIssue;
