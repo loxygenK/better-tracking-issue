@@ -12,6 +12,8 @@
 ## WIP
 **まだ WIP なので、バグが潜んでいるかもしれません!!**
 
+現在は `v0.*.*` 系のタグでご利用いただけます。バグ報告等お待ちしています……!
+
 ## 何をする Action?
 
 **このアクションは、[タスクリスト](https://docs.github.com/ja/get-started/writing-on-github/working-with-advanced-formatting/about-task-lists) への変更を検知して、追加された/削除された Issue のタイトルや本文（Tracked Issue）に、親 Issue （Tracking Issue）の番号や名前を書き込みます。**

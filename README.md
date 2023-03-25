@@ -13,6 +13,8 @@
 ## WIP
 **This action is still WIP, so there might be nasty bugs.**
 
+Currently, the action is available on `v0.*.*`. Bug reports are more than welcome!
+
 ## What does this Action do?
 
 **This action detects the change in the [task list](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/about-task-lists) and adds the parent issue number to the title and description of issues in the list.**
