@@ -38,7 +38,7 @@
 
 #### 実際の動作様子 (mp4)
 
-https://user-images.githubusercontent.com/55672846/227721771-bf87b7c0-3d97-4eaf-ae08-42702570fda2.mp4
+https://user-images.githubusercontent.com/55672846/227727014-5aec6390-4f82-46bb-a35d-2e3fae77d27e.mp4
 
 ## 追加する
 #### 例のワークフロー
