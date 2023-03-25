@@ -29,6 +29,8 @@
 - **Annotation text** (The purple one)<br />
   The tracker issue's number. (The same information with the number tag) The text is appended to the body.
 
+#### How it works (GIF)
+
 <img src="./_readme/recorded.gif" width="500px" />
 
 ## Inputs
