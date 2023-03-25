@@ -59,15 +59,15 @@ Title tag に表示される Issue を選択する方法を指定します。（
 |     ☑️     | `latest-lowest`  | 追加された Issue               | Issue の番号が一番小さい Issue |
 |            | `latest-highest` | 追加された Issue               | Issue の番号が一番大きい Issue |
 
-> **info**
+> **Note**
 > 今後、何らかの方法でどの Issue を表示するか直接番号で指定できるようにすることを考えています。
 
 ---
 
-> **info**
+> **Note**
 > 現状、設定を変更しても既存の Issue は壊れないようになっています。
 
-> **warning**
+> **Warning**
 > この Action はまだ v0 なので、破壊的な変更が発生する可能性があります! この場合でも、既存の Issue は問題なくマイグレートできるように更新したいと考えています。
 
 ## 追加される要素

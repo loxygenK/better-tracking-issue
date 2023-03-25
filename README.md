@@ -58,8 +58,16 @@ Try using this if you felt that the behavior of title tags is unnatural when the
 |    ☑️     | `latest-lowest`  | The newly added issue                 | The issue with the lowest number  |
 |          | `latest-highest` | The newly added issue                 | The issue with the highest number |
 
-> **info**
+> **Note**
 > I am planning to add a method to directly specify the issue to display using the issue's number.
+
+---
+
+> **Note**
+> Currently, changing the settings does not break existing issues.
+
+> **Warning**
+> This action is still v0, so there might be breaking changes! Even in this case, I will do my best to be able to migrate the existing issue.
 
 ## Roadmaps
 
