@@ -81,18 +81,18 @@ jobs:
 > **Note**
 > 「Number tag」「Title tag」「Annotation text」については、次の「Issue に追加される要素」を参照してください。
 
-#### `token` <sup>(🔶 必須)</sup>
+##### `token` <sup>(🔶 必須)</sup>
 Issue にアクセスするためのトークンです。**`GITHUB_TOKEN` を 使う際は、 `permission.issues: write` を設定してください!**
 
-#### `number-tag-prefix`
+##### `number-tag-prefix`
 Issue のタイトルの頭に追加される、Tracking Issue の番号が表示されるタグ（number tag）に使われる接頭語を指定します。
 デフォルトでは `🚩` が設定されています。
 
-#### `title-tag-prefix`
+##### `title-tag-prefix`
 Issue のタイトルの後ろに追加される、Tracking Issue の名前が表示されるタグ（title tag）に使われる接頭語を指定します。
 デフォルトでは `🚩` が設定されています。
 
-#### `title-tag-strategy`
+##### `title-tag-strategy`
 Title tag に表示される Issue を選択する方法を指定します。（Title tag には、現状 1 つの Issue のみ表示しかできません。）
 
 複数の Issue にトラッキングされているときの、Title tag の挙動が不自然だと感じたら使用してみてください。
