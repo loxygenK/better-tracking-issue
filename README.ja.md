@@ -56,7 +56,7 @@ Title tag に表示される Issue を選択する方法を指定します。（
 | :--------: | :--------------- | :----------------------------- | :----------------------------- |
 |            | `fixed-lowest`   | Issue の番号が一番小さい Issue | Issue の番号が一番小さい Issue |
 |            | `fixed-highest`  | Issue の番号が一番大きい Issue | Issue の番号が一番大きい Issue |
-|     ✅     | `latest-lowest`  | 追加された Issue               | Issue の番号が一番小さい Issue |
+|     ☑️     | `latest-lowest`  | 追加された Issue               | Issue の番号が一番小さい Issue |
 |            | `latest-highest` | 追加された Issue               | Issue の番号が一番大きい Issue |
 
 > **info**

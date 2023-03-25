@@ -55,7 +55,7 @@ Try using this if you felt that the behavior of title tags is unnatural when the
 | :------: | :--------------- | :------------------------------------ | :-------------------------------- |
 |          | `fixed-lowest`   | The issue with the lowest number (ID) | The issue with the lowest number  |
 |          | `fixed-highest`  | The issue with the highest number     | The issue with the highest number |
-|    ✅    | `latest-lowest`  | The newly added issue                 | The issue with the lowest number  |
+|    ☑️     | `latest-lowest`  | The newly added issue                 | The issue with the lowest number  |
 |          | `latest-highest` | The newly added issue                 | The issue with the highest number |
 
 > **info**
