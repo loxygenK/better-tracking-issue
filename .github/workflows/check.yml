@@ -13,7 +13,7 @@ jobs:
   check:
     strategy:
       matrix:
-        cmd: ["ci:eslint", "ci:prettier", "ci:tsc"]
+        cmd: ["ci:eslint", "ci:prettier", "ci:tsc", "ci:test"]
       fail-fast: false
 
     runs-on: ubuntu-latest
