@@ -8,6 +8,12 @@
 🚩 Make the relation of task list more visible<br />
 🌐 README is available in [English] [[日本語]](./README.ja.md)
 
+[![Lint and formatting](https://github.com/loxygenK/better-tracking-issue/actions/workflows/check.yml/badge.svg)](https://github.com/loxygenK/better-tracking-issue/actions/workflows/check.yml)
+[![Build and release](https://github.com/loxygenK/better-tracking-issue/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/loxygenK/better-tracking-issue/actions/workflows/build.yml)
+[![Testing](https://github.com/loxygenK/better-tracking-issue/actions/workflows/test.yml/badge.svg)](https://github.com/loxygenK/better-tracking-issue/actions/workflows/test.yml)
+
+[![codecov](https://codecov.io/gh/loxygenK/better-tracking-issue/branch/main/graph/badge.svg?token=1XbONQETTl)](https://codecov.io/gh/loxygenK/better-tracking-issue) (I'm working on it)
+
 </div>
 
 ## WIP
