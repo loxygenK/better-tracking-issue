@@ -15,7 +15,7 @@
     "ci:eslint": "pnpm lint:eslint --max-warnings 0",
     "ci:prettier": "pnpm lint:prettier",
     "ci:tsc": "tsc",
-    "ci:test": "pnpm test --ci",
+    "ci:test": "pnpm test -- --ci",
     "fix": "run-s fix:*",
     "fix:eslint": "pnpm lint:eslint --fix",
     "fix:prettier": "pnpm lint:prettier -w",
